@@ -18,8 +18,11 @@ export enum EventDirection {
 ```
 
 **queueUrl**(required) SQS queue url
+
 **direction**(required) indicates whenther to backup or restore the messages
+
 **path**(required) s3 file path relative to `APPDATA_BUCKET/APPDATA_PREFIX`
+
 **delete**(optional) indicates whether to delete the messages from the queue after the messages are backed up in s3 (default: false)
 
 ## How to invoike
