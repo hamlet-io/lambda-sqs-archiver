@@ -1,6 +1,8 @@
 service: lambda-sqs-archiver
 frameworkVersion: '2'
-useDotenv: false
+
+package:
+  individually: true
 
 provider:
   name: aws
@@ -11,5 +13,5 @@ plugins:
   - serverless-offline
 
 functions:
-  archiver:
+  sqs-archiver:
     handler: src/index.handler
