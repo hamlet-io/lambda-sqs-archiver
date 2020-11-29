@@ -25,6 +25,15 @@ export enum EventDirection {
 
 **delete**(optional) indicates whether to delete the messages from the queue after the messages are backed up in s3 (default: false)
 
+## Environment Variables
+
+| variable       | description                              |
+| -------------- | ---------------------------------------- |
+| LOG_LEVEL      | log level for pino, defaults to debug    |
+| AWS_REGION     | AWS region, defaults to ap-southeast-2   |
+| APPDATA_BUCKET | S3 bucket for storing backed-up messages |
+| APPDATA_PREFIX | S3 prefix for storing backed-up messages |
+
 ## How to invoike
 
 ```
