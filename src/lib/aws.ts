@@ -6,10 +6,12 @@ import { config } from './config';
 
 export const sqs = new AWSSQS({
   apiVersion: '2012-11-05',
+  region: config.aws.region,
 });
 
 export const s3 = new AWSS3({
   apiVersion: '2012-11-05',
+  region: config.aws.region,
 });
 const RECEIVE_PARAMS = { MaxNumberOfMessages: 10, VisibilityTimeout: 10 };
 
