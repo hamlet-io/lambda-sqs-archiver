@@ -1,0 +1,17 @@
+service: lambda-sqs-archiver
+frameworkVersion: '2'
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+functions:
+  sqs-archiver:
+    handler: src/index.handler
