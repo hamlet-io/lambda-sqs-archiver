@@ -18,8 +18,8 @@ export enum EventDirection {
 
 ```
 
-**queueLink**(optional, if queueUrl is passed) Prefix to get the queue details from environment variable, for example
-if queueLink = 'CITIZEN', queue details are read from CITIZEN_URL, CITIZEN_NAME, CITIZEN_ARN
+**queueLink**(optional, if queueUrl is passed) Name of link in hamlet solution to get the queue details from, for example
+if queueLink = 'CITIZEN', queue details are read from CITIZEN_URL, CITIZEN_NAME, CITIZEN_ARN environment variables
 
 **queueUrl**(optional, if queueLink is passed) SQS queue url
 
