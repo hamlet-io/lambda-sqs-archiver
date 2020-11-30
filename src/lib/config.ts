@@ -1,4 +1,5 @@
 import path from 'path';
+import { Event } from './../types';
 
 export interface AppConfig {
   env: string;
@@ -33,4 +34,18 @@ export const config: AppConfig = {
     appdataBucket: APPDATA_BUCKET,
     appdataPrefix: APPDATA_PREFIX,
   },
+};
+
+export const getQueueDetails = (event: Event) => {
+  if (event.queueUrl) {
+    return {
+      url: event.queueUrl,
+    };
+  }
+  const queueLink = event.queueLink;
+  return {
+    url: process.env[`${queueLink}_URL`] as string,
+    name: process.env[`${queueLink}_NAME`],
+    arn: process.env[`${queueLink}_ARN`],
+  };
 };
