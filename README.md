@@ -18,7 +18,7 @@ export enum EventDirection {
 
 ```
 
-**queueLink**(required) Prefix to get the queue details from environment variable, for example
+**queueLink**(optional, if queueUrl is passed) Prefix to get the queue details from environment variable, for example
 if queueLink = 'CITIZEN', queue details are read from CITIZEN_URL, CITIZEN_NAME, CITIZEN_ARN
 
 **queueUrl**(optional, if queueLink is passed) SQS queue url

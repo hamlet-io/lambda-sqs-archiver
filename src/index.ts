@@ -5,7 +5,7 @@ import { logger } from './lib/logger';
 import { Restore } from './Restore';
 import { Event, EventDirection } from './types';
 
-const REQUIRED_EVENT_ARGS = ['queueLink', 'direction', 'path'];
+const REQUIRED_EVENT_ARGS = ['direction', 'path'];
 
 const validate = (event: any) => {
   const missing = REQUIRED_EVENT_ARGS.filter((arg) => event[arg] === undefined);
