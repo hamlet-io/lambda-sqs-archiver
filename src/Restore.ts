@@ -1,10 +1,14 @@
 import readline from 'readline';
 import { s3ReadStream, sendMessage } from './lib/aws';
+import { getQueueDetails } from './lib/config';
 import { logger } from './lib/logger';
-import { Event } from './types';
+import { Event, QueueDetails } from './types';
 
 export class Restore {
-  constructor(private readonly event: Event) {}
+  queue: QueueDetails;
+  constructor(private readonly event: Event) {
+    this.queue = getQueueDetails(event);
+  }
 
   async run() {
     const rl = readline.createInterface({
@@ -13,11 +17,11 @@ export class Restore {
     rl.on('line', async (line) => {
       rl.pause();
       const message = JSON.parse(line);
-      await sendMessage(this.event.queueUrl, message);
+      await sendMessage(this.queue.url, message);
       rl.resume();
     }).on('close', () => {
       logger.info(
-        `All the messages from s3 backup file are written to ${this.event.queueUrl}`
+        `All the messages from s3 backup file are written to ${this.queue.url}`
       );
     });
   }

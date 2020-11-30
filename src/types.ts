@@ -3,7 +3,14 @@ export enum EventDirection {
   ToQueue = 'ToQueue',
 }
 
+export interface QueueDetails {
+  url: string;
+  name?: string;
+  arn?: string;
+}
+
 export interface Event {
+  queueLink: string;
   queueUrl: string;
   direction: EventDirection;
   path: string;
