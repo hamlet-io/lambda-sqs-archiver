@@ -53,3 +53,11 @@ aws lambda invoke \
 ## Packaging
 
 `npm run build` builds and packages the function using serverless, packaged artifact will be in `.serverless` directory
+
+## Configuring in a hamlet solution
+
+When using the function in a hamlet solution, link the lambda function to all the queues that need to be manipulated.
+
+If `FromQueue`, set the role to `consume`. If `ToQueue`, set the role to `produce`. If both, set the role to `all`.
+
+This will result in the function having all the necessary permissions on the queues that need to be manipulated. The 3 configuration is part of the standard configuration for a lambda function, so permissions on the S3 bucket will automatically be established.
