@@ -37,9 +37,9 @@ if queueLink = 'CITIZEN', queue details are read from CITIZEN_URL, CITIZEN_NAME,
 | AWS_REGION        | AWS region, defaults to ap-southeast-2   |
 | APPDATA_BUCKET    | S3 bucket for storing backed-up messages |
 | APPDATA_PREFIX    | S3 prefix for storing backed-up messages |
-| [quoteLink]\_URL  | Queue URL                                |
-| [quoteLink]\_NAME | Queue name                               |
-| [quoteLink]\_ARN  | Queue ARN                                |
+| [queueLink]\_URL  | Queue URL                                |
+| [queueLink]\_NAME | Queue name                               |
+| [queueLink]\_ARN  | Queue ARN                                |
 
 ## How to invoike
 
