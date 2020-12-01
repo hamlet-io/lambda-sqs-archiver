@@ -7,6 +7,7 @@ import { Event, QueueDetails } from './types';
 
 export class Backup {
   queue: QueueDetails;
+
   constructor(private readonly event: Event) {
     this.queue = getQueueDetails(event);
   }
@@ -17,7 +18,7 @@ export class Backup {
     fs.ensureFileSync(config.localFilePath);
     const localFile = fs.createWriteStream(config.localFilePath);
 
-    const messages = await receiveAllMessages(this.queue.url);
+    const messages = await receiveAllMessages(this.queue);
     messages.map((message) => localFile.write(`${JSON.stringify(message)}\n`));
     localFile.end();
     logger.debug(
@@ -38,7 +39,7 @@ export class Backup {
       logger.debug(`Deleting backed up messages from ${this.queue.url}`);
       const deleteMessages = messages.map((message) =>
         limit(async () => {
-          await deleteMessage(this.queue.url, message.ReceiptHandle as string);
+          await deleteMessage(this.queue, message.ReceiptHandle as string);
           logger.debug(
             `Deleted ${JSON.stringify(message)} from ${this.queue.url}`
           );

@@ -17,7 +17,7 @@ export class Restore {
     rl.on('line', async (line) => {
       rl.pause();
       const message = JSON.parse(line);
-      await sendMessage(this.queue.url, message);
+      await sendMessage(this.queue, message);
       rl.resume();
     }).on('close', () => {
       logger.info(
