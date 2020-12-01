@@ -1,5 +1,5 @@
 import path from 'path';
-import { Event } from './../types';
+import { Event, QueueDetails } from './../types';
 
 export interface AppConfig {
   env: string;
@@ -18,7 +18,7 @@ export interface AppConfig {
 const {
   NODE_ENV,
   LOG_LEVEL,
-  AWS_REGION,
+  REGION,
   APPDATA_BUCKET,
   APPDATA_PREFIX,
 } = process.env;
@@ -28,7 +28,7 @@ export const config: AppConfig = {
   logLevel: LOG_LEVEL || 'debug',
   localFilePath: path.join(__dirname, '../../out/messages.json'),
   aws: {
-    region: AWS_REGION || 'ap-southeast-2',
+    region: REGION || 'ap-southeast-2',
   },
   s3: {
     appdataBucket: APPDATA_BUCKET,
@@ -36,10 +36,11 @@ export const config: AppConfig = {
   },
 };
 
-export const getQueueDetails = (event: Event) => {
+export const getQueueDetails = (event: Event): QueueDetails => {
   if (event.queueUrl) {
     return {
       url: event.queueUrl,
+      region: config.aws.region,
     };
   }
   const queueLink = event.queueLink;
@@ -47,5 +48,6 @@ export const getQueueDetails = (event: Event) => {
     url: process.env[`${queueLink}_URL`] as string,
     name: process.env[`${queueLink}_NAME`],
     arn: process.env[`${queueLink}_ARN`],
+    region: process.env[`${queueLink}_REGION`] || config.aws.region,
   };
 };

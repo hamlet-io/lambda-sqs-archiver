@@ -7,6 +7,7 @@ export interface QueueDetails {
   url: string;
   name?: string;
   arn?: string;
+  region: string;
 }
 
 export interface Event {
